@@ -8,9 +8,6 @@ except ImportError as e:
     os.system("sudo pip3 install numpy")
     import numpy as np
 
-
-
-
 def ridge(data):
     X,y=read_data()
     z=np.matmul(X.T,X)+np.eye(X.shape[1])*(0.000000000000000000000000000001)
@@ -28,7 +25,6 @@ def lasso(data):
         w-= lr * gradient
 
     return w @ data
-
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
