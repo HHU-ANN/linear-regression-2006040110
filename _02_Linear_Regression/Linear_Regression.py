@@ -17,13 +17,11 @@ def ridge(data):
     w=np.matmul(np.linalg.inv(z),np.matmul(X.T,y))
     return w @ data
 def lasso(data):
-    X, y = read_data()
-    if data[0] == 2.0135000e+03 or data[0] == 2.0130000e+03 or data[0] == 2.0126670e+03:
-       t = ridge(data)
-       return t
-    w = lassotest(X, y, 0.5,data)
-    return w @ data
+    x, y = read_data()
+    w = np.array([1, 1, 1, 1, 1, 1])
 
+    w = np.dot(np.linalg.inv(np.dot(x.T, x)), np.dot(x.T, y)-0.5*w)
+    return w @ data
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
