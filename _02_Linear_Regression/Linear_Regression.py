@@ -15,13 +15,12 @@ def ridge(data):
     return w @ data
 
 
+
 def lasso(data):
+
     x, y = read_data()
-    w = np.array([1, 1, 1, 1, 1, 1])
-
-    w = np.dot(np.linalg.inv(np.dot(x.T, x)), np.dot(x.T, y)-0.5*w)
-    return w @ data
-
+    w = lasso_regression(x,y)
+    return data@w[:6] + w[-1]
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
