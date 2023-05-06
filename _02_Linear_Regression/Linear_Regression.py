@@ -18,11 +18,12 @@ def ridge(data):
 
 
 def lasso(data):
-    X,y=read_data()
-    m, n = X.shape
-    weight = np.array([ 1.49462254e+01, -2.50275342e-01, -8.76423816e-03,  1.23727270e+00,
-       -1.80224871e+02, -2.10165019e+02])
-    max_iterations = 100000
+    x, y = read_data()
+    w = np.array([1, 1, 1, 1, 1, 1])
+
+    w = np.dot(np.linalg.inv(np.dot(x.T, x)), np.dot(x.T, y)-0.5*w)
+    return w @ data
+
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
     y = np.load(path + 'y_train.npy')
